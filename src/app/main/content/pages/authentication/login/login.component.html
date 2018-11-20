@@ -1,0 +1,70 @@
+<div id="login" fxLayout="column" fusePerfectScrollbar>
+
+    <div id="login-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+        <div id="login-form" *fuseIfOnDom [@animate]="{value:'*',params:{duration:'300ms',y:'100px'}}">
+
+            <div class="logo">
+                <img src="assets/images/logos/fuse.svg">
+            </div>
+
+            <div class="title">تسجيل الدخول</div>
+            <form name="loginForm" [formGroup]="loginForm" novalidate>
+
+                <mat-form-field>
+                    <input matInput placeholder="البريد الإلكتروني" formControlName="email">
+                    <mat-error *ngIf="loginFormErrors.email.required">
+                        الرجاء إدخال البريد الإلكتروني 
+                    </mat-error>
+                    <mat-error *ngIf="!loginFormErrors.email.required && loginFormErrors.email.email">
+                        الرجاء إدخال بريد إلكتروني صحيح
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <input type="password" matInput placeholder="كلمة السر" formControlName="password">
+                    <mat-error *ngIf="loginFormErrors.password.required">
+                        الرجاء إدخال كلمة السر
+                    </mat-error>
+                </mat-form-field>
+
+                <div class="remember-forgot-password" fxLayout="row" fxLayout.xs="column"
+                     fxLayoutAlign="space-between center">
+                    <!--<mat-checkbox class="remember-me" aria-label="Remember Me">
+                        Remember Me
+                    </mat-checkbox>-->
+
+                    <a class="forgot-password" [routerLink]="'/forgot-password'">
+                        نسيت كلمة السر؟
+                    </a>
+                </div>
+
+                <button mat-raised-button color="accent" class="submit-button" aria-label="LOG IN"
+                        [disabled]="loginForm.invalid" (click)="login()">
+                    تسجيل الدخول
+                </button>
+
+            </form>
+
+            <!--<div class="separator">
+                <span class="text">OR</span>
+            </div>-->
+
+            <!--<button mat-raised-button class="google">
+                Log in with Google
+            </button>
+
+            <button mat-raised-button class="facebook">
+                Log in with Facebook
+            </button>
+
+            <div class="register" fxLayout="column" fxLayoutAlign="center center">
+                <span class="text">Don't have an account?</span>
+                <a class="link" [routerLink]="'/pages/auth/register'">Create an account</a>
+            </div>-->
+
+        </div>
+
+    </div>
+
+</div>

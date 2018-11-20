@@ -1,0 +1,230 @@
+.home {
+  .ads {
+    .section1 {
+      .card {
+        height: 200px;
+        padding: 10px;
+        background-color: #323068;
+        color: white;
+        border-radius: 0px;
+        box-shadow: 0 0 12px #828282;
+        margin: 11px;
+        .label {
+          font-size: 32px;
+          font-weight: 600;
+          font-family: 'Cairo', sans-serif;
+          padding-right: 20px;
+          @media screen and (max-width: 700px) {
+            font-size: 30px;
+          }
+        }
+        .details {
+          padding-right: 20px;
+          margin-top: 14px;
+          .from {
+            label {
+              font-size: 15px;
+              font-weight: 600;
+              font-family: 'Cairo', sans-serif;
+              //text-align: center;
+              padding-right: 12px;
+              display: block;
+              color: #cccccc;
+              @media screen and (max-width: 700px) {
+                font-size: 20px;
+              }
+            }
+            h3 {
+              font-size: 50px;
+              font-weight: 700;
+              font-family: 'Cairo', sans-serif;
+              text-align: center;
+              margin: 3px;
+              @media screen and (max-width: 700px) {
+                font-size: 25px;
+              }
+            }
+          }
+        }
+        @media screen and (max-width: 700px) {
+          height: 150px;
+        }
+      }
+    }
+    .section2 {
+      overflow-y: auto;
+      h1 {
+        font-size: 30px;
+        color: #8a8a8a;
+        font-weight: bold;
+        @media screen and (max-width: 700px) {
+          font-size: 20px;
+        }
+      }
+      .card {
+        margin-left: 22px;
+        .mainCard {
+          margin: 11px;
+          padding: 10px 15px;
+          background-color: white;
+          box-shadow: 0 0 12px #828282;
+          border-radius: 0px;
+          .header {
+            display: block;
+            label {
+              font-size: 25px;
+              color: black;
+              font-weight: 600;
+              font-family: 'Cairo', sans-serif;
+            }
+          }
+          .progras {
+            width: 100%;
+            margin-top:10px;
+            span {
+              font-size: 15px;
+              font-weight: 600;
+              font-family: 'Cairo', sans-serif;
+            }
+            .prograsBar {
+              position: relative;
+              .gray {
+                position: relative;
+                width: 100%;
+                background-color: gray;
+                height: 15px;
+                border-radius: 15px;
+                z-index: 0;
+              }
+              .green {
+                top: 0px;
+                right: 0px;
+                width: 65%;
+                background-color: #11ca39;
+                height: 15px;
+                border-radius: 15px;
+                z-index: 10000000;
+              }
+            }
+          }
+          .details {
+            padding-top: 25px;
+            .from {
+              label {
+                font-size: 15px;
+                font-weight: 600;
+                font-family: 'Cairo', sans-serif;
+                //text-align: center;
+                display: block;
+                color: black;
+              }
+              h3 {
+                color: #767676;
+                font-size: 50px;
+                font-weight: 600;
+                font-family: 'Cairo', sans-serif;
+                //text-align: center;
+                margin: 3px;
+              }
+            }
+          }
+          hr {
+            margin: 18px 0px;
+          }
+          .moreDet {
+            color: darkblue;
+            font-size: 25px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+          }
+          
+        }
+      }
+    }
+  }
+  .hotSpot {
+    .section1 {
+      .card {
+        height: 220px;
+        padding: 20px;
+        background-color: #323068;
+        color: white;
+        border-radius:0px;
+        box-shadow: 0 0 12px #828282;
+        margin: 11px;
+        @media screen and (max-width: 700px) {
+        height: 150px;
+        }
+        .label {
+          font-family: 'Cairo', sans-serif;
+          font-weight: 600;
+          font-size: 35px;
+          @media screen and (max-width: 700px) {
+            font-size: 30px;
+          }
+        }
+        .details {
+          margin-bottom: 10px;
+          .from {
+            label {
+              font-size: 17px;
+              font-family: 'Cairo', sans-serif;
+              font-weight: 600;
+              //text-align: center;
+              margin-top: 15px;
+              display: block;
+              color: #9795b3;
+              @media screen and (max-width: 700px) {
+                font-size: 20px;
+              }
+            }
+            h3 {
+              font-size: 50px;
+              font-family: 'Cairo', sans-serif;
+              font-weight: 600;
+              //text-align: center;
+              margin: 3px;
+              @media screen and (max-width: 700px) {
+                font-size: 25px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+h3 .moreDet :hover {
+  color: darkblue;
+  font-size: 25px;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color:darkblue;
+  cursor: pointer;
+}
+
+.header1 {
+  color: #969694;
+  margin-right: 15px;
+  font-weight: 600;
+  font-family: 'Cairo', sans-serif;
+}
+
+:host ::ng-deep .datatable-header .datatable-header-cell.sortable .datatable-header-cell-wrapper {
+  font-size: 18px !important;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer;
+}
+
+:host ::ng-deep .ngx-datatable.material .datatable-body .datatable-row-wrapper .datatable-body-cell {
+  font-family: 'Cairo', sans-serif;
+}
+
+/* .my-tab {
+  font-size: 21px !important;
+  font-weight: 600 !important;
+  font-family: 'Cairo', sans-serif !important;
+} */

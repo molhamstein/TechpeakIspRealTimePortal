@@ -1,0 +1,36 @@
+// Import Fuse main library
+@import "app/core/scss/core";
+* {
+  // direction: rtl;
+  text-align: right;
+}
+
+fuse-toolbar,
+fuse-navbar-vertical,
+.page-layout.blank {
+  direction: rtl;
+}
+
+datatable-pager {
+  direction: ltr;
+}
+
+.mat-tab-labels {
+  justify-content: center;
+  /* align items in Main Axis */
+  flex-basis: 0;
+  flex-grow: 1;
+}
+
+.main {
+  direction: rtl;
+}
+
+.mat-tab-body-wrapper {
+  overflow-y: auto !important;
+}
+
+.mat-dialog-container{
+  padding: 0px !important;
+  position: relative;
+}

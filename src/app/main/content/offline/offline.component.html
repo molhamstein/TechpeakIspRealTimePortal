@@ -1,0 +1,161 @@
+<div class="page-layout blank p-24 home main">
+
+  <div class="hotSpot">
+    <div *ngIf="headLines" fxLayout="row" class="section1">
+      <div class="card" fxFlex="45">
+        <div class="label">
+          <label>عدد المشاهدات</label>
+        </div>
+        <div fxLayout="row" class="details">
+          <div class="from">
+            <label>
+                  حتى الأن
+                </label>
+            <h3>{{headLines.impressions.all}}</h3>
+          </div>
+          <div fxFlex="45" class="from" style="padding-right: 150px;">
+            <label>
+                  اليوم
+                </label>
+            <h3>{{headLines.impressions.day}}</h3>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="2"></div>
+      <div class="card" fxFlex="45">
+        <div class="label">
+          <label>عدد النقرات</label>
+        </div>
+        <div fxLayout="row" class="details">
+          <div class="from">
+            <label>
+                  حتى الأن
+                </label>
+            <h3>{{headLines.clicks.all}}</h3>
+          </div>
+          <div fxFlex="45" class="from" style="padding-right: 150px;">
+            <label>
+                  اليوم
+                </label>
+            <h3>{{headLines.clicks.day}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayout="row" class="section1">
+      <div class="content-card mat-white-bg">
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="loadingIndicator == false" style="z-index: 10000;position: fixed;left: calc(45% - 100px);top: 45%;">
+    <mat-spinner></mat-spinner>
+  </div>
+
+
+  <mat-card [formGroup]="form" style="margin-top:15px;">
+    <div fxLayoutAlign.gt-md="space-around center" fxLayout="row" class="section1">
+      <mat-form-field fxFlex="18">
+        <input matInput placeholder="رقم الهاتف" formControlName="mobile">
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="18">
+        <input matInput placeholder="IP" formControlName="ip">
+        <mat-icon matSuffix>laptop</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="18">
+        <input matInput [min]="minDate" [max]="maxDate" formControlName="from" (focus)="birthDatePicker.open()" [matDatepicker]="birthDatePicker"
+          placeholder="تاريخ البداية">
+        <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #birthDatePicker startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="18">
+        <input matInput [min]="minDate" [max]="maxDate" formControlName="to" (focus)="toDatePicker.open()" [matDatepicker]="toDatePicker"
+          placeholder="تاريخ النهاية">
+        <mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #toDatePicker startView="year" [startAt]="startDate"></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field fxFlex="18">
+        <mat-select placeholder="الموقع" formControlName="location">
+          <mat-option *ngFor="let oneLocation of locations" [value]="oneLocation">
+            {{ oneLocation.name }}
+          </mat-option>
+        </mat-select>
+
+        <mat-icon matSuffix>map</mat-icon>
+      </mat-form-field>
+
+    </div>
+
+    <div style="margin: 15px 0px;" fxLayoutAlign.gt-md="space-around center" fxLayout="row" class="section1">
+
+      <!--<button mat-button (click)="addForm()">بحث</button>
+      <button mat-button (click)="addForm()">استخراج</button>-->
+      <div fxFlex="18">
+        <button mat-raised-button color="primary" (click)="search()">بحث</button>
+      </div>
+      <div fxFlex="18">
+      </div>
+      <div fxFlex="18">
+      </div>
+      <div fxFlex="18">
+      </div>
+      <div fxFlex="18">
+        <button mat-raised-button color="accent" (click)="export()">استخراج</button>
+      </div>
+    </div>
+    <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'"
+      [scrollbarH]="true" [externalPaging]="true" [count]="count" [offset]="offset" [limit]="limit" (page)='onPage($event)'>
+
+      <!--<ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50"
+    [rowHeight]="50" [footerHeight]="50" [scrollbarV]="false" [scrollbarH]="true" [externalPaging]="true" [count]="count"
+    [offset]="offset" [limit]="limit" (page)='onPage($event)'>-->
+
+      <ngx-datatable-column [width]="100" name="الرقم" prop="mobile">
+      </ngx-datatable-column>
+
+
+      <ngx-datatable-column [width]="100" name="IP" prop="nasipaddress">
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="125" name="تاريخ البدء" prop="acctstarttime">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{row.acctstarttime | date:' hh:mm-yyyy/MM/dd'}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="125" name="تاريخ النهاية" prop="acctstoptime">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{row.acctstoptime | date:' hh:mm-yyyy/MM/dd'}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column [width]="150" name="المكان" prop="calledstationid">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+
+          <mat-chip-list>
+            <mat-chip [ngStyle]="{'background-color': colorsLocation[row.calledstationid]}" selected="true">{{getLocation(row.calledstationid)}}</mat-chip>
+          </mat-chip-list>
+        </ng-template>
+      </ngx-datatable-column>
+
+
+      <ngx-datatable-column [width]="15" name="ids">
+        <ng-template let-column="column" ngx-datatable-header-template>
+          <div style="margin-top:13px;" (click)="initData()">
+            <mat-icon style="color : rgb(145, 145, 145); cursor: pointer;">refresh</mat-icon>
+          </div>
+        </ng-template>
+
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </mat-card>
+
+
+</div>
