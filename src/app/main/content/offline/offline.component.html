@@ -63,11 +63,6 @@
       </mat-form-field>
 
       <mat-form-field fxFlex="18">
-        <input matInput placeholder="IP" formControlName="ip">
-        <mat-icon matSuffix>laptop</mat-icon>
-      </mat-form-field>
-
-      <mat-form-field fxFlex="18">
         <input matInput [min]="minDate" [max]="maxDate" formControlName="from" (focus)="birthDatePicker.open()" [matDatepicker]="birthDatePicker"
           placeholder="تاريخ البداية">
         <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
@@ -80,6 +75,12 @@
         <mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #toDatePicker startView="year" [startAt]="startDate"></mat-datepicker>
       </mat-form-field>
+
+      <mat-form-field fxFlex="18">
+        <input matInput placeholder="IP" formControlName="ip">
+        <mat-icon matSuffix>laptop</mat-icon>
+      </mat-form-field>
+
 
       <mat-form-field fxFlex="18">
         <mat-select placeholder="الموقع" formControlName="location">
@@ -98,17 +99,24 @@
       <!--<button mat-button (click)="addForm()">بحث</button>
       <button mat-button (click)="addForm()">استخراج</button>-->
       <div fxFlex="18">
-        <button mat-raised-button color="primary" (click)="search()">بحث</button>
+        <button mat-raised-button color="primary" (click)="search(startPicker,endPicker)">بحث</button>
       </div>
-      <div fxFlex="18">
-      </div>
-      <div fxFlex="18">
-      </div>
+      <mat-form-field fxFlex="18">
+        <input matInput [matTimepicker]="startPicker" [disabled]="form.value['from']==''" placeholder="ساعة البداية">
+        <mat-timepicker-toggle matSuffix [for]="startPicker"></mat-timepicker-toggle>
+        <mat-timepicker #startPicker color="primary"></mat-timepicker>
+      </mat-form-field>
+      <mat-form-field fxFlex="18">
+        <input matInput [matTimepicker]="endPicker" [disabled]="form.value['to']==''" placeholder="ساعة النهاية">
+        <mat-timepicker-toggle matSuffix [for]="endPicker"></mat-timepicker-toggle>
+        <mat-timepicker #endPicker color="primary"></mat-timepicker>
+      </mat-form-field>
       <div fxFlex="18">
       </div>
       <div fxFlex="18">
         <button mat-raised-button color="accent" (click)="export()">استخراج</button>
       </div>
+
     </div>
     <ngx-datatable class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="48" [footerHeight]="56" [rowHeight]="'auto'"
       [scrollbarH]="true" [externalPaging]="true" [count]="count" [offset]="offset" [limit]="limit" (page)='onPage($event)'>
@@ -123,6 +131,11 @@
 
       <ngx-datatable-column [width]="100" name="IP" prop="nasipaddress">
       </ngx-datatable-column>
+
+
+      <ngx-datatable-column [width]="100" name="ماك" prop="mac">
+      </ngx-datatable-column>
+
 
       <ngx-datatable-column [width]="125" name="تاريخ البدء" prop="acctstarttime">
         <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
