@@ -124,25 +124,25 @@ export class FusehomeComponent {
         var startMin = 0;
         var endHoure = 23;
         var endMin = 59;
-        if (this.form.value['from'] != '') {
-            console.log("startTime")
-            console.log(startTime)
+        // if (this.form.value['from'] != '') {
+        //     console.log("startTime")
+        //     console.log(startTime)
 
-            if (startTime != null && startTime['userTime'] != null) {
-                this.startTime = startTime['userTime'];
-            }
+        //     if (startTime != null && startTime['userTime'] != null) {
+        //         this.startTime = startTime['userTime'];
+        //     }
 
-            if (this.startTime != null) {
-                startHoure = this.startTime['hour'];
-                if (this.startTime['meriden'] == 'PM')
-                    startHoure += 12
+        //     if (this.startTime != null) {
+        //         startHoure = this.startTime['hour'];
+        //         if (this.startTime['meriden'] == 'PM')
+        //             startHoure += 12
 
-                startMin = this.startTime['minute'];
-            }
-            this.form.value['from'].setHours(startHoure);
-            this.form.value['from'].setMinutes(startMin);
+        //         startMin = this.startTime['minute'];
+        //     }
+        //     this.form.value['from'].setHours(startHoure);
+        //     this.form.value['from'].setMinutes(startMin);
 
-        }
+        // }
 
         if (this.form.value['to'] != '') {
 
@@ -161,7 +161,7 @@ export class FusehomeComponent {
             this.form.value['to'].setHours(endHoure);
             this.form.value['to'].setMinutes(endHoure);
         }
-        this.mainServ.APIServ.get("clients/onlineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName + "&from=" + this.form.value['from'] + "&to=" + this.form.value['to'] + "&ip=" + this.form.value['ip']).subscribe((data: any) => {
+        this.mainServ.APIServ.get("clients/onlineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName +  "&to=" + this.form.value['to'] + "&ip=" + this.form.value['ip']).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rows = data;
             }

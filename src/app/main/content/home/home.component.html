@@ -57,31 +57,31 @@
 
   <mat-card [formGroup]="form" style="margin-top:15px;">
     <div fxLayoutAlign.gt-md="space-around center" fxLayout="row" class="section1">
-      <mat-form-field fxFlex="18">
+      <mat-form-field fxFlex="22">
         <input matInput placeholder="رقم الهاتف" formControlName="mobile">
         <mat-icon matSuffix>phone</mat-icon>
       </mat-form-field>
 
 
-      <mat-form-field fxFlex="18">
+      <!--<mat-form-field fxFlex="22">
         <input matInput [min]="minDate" [max]="maxDate" formControlName="from" (focus)="birthDatePicker.open()" [matDatepicker]="birthDatePicker"
           placeholder="تاريخ البداية">
         <mat-datepicker-toggle matSuffix [for]="birthDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #birthDatePicker startView="year" [startAt]="startDate"></mat-datepicker>
-      </mat-form-field>
+      </mat-form-field>-->
 
-      <mat-form-field fxFlex="18">
+      <mat-form-field fxFlex="22">
         <input matInput [min]="minDate" [max]="maxDate" formControlName="to" (focus)="toDatePicker.open()" [matDatepicker]="toDatePicker"
-          placeholder="تاريخ النهاية">
+          placeholder="المتصلون قبل تاريخ">
         <mat-datepicker-toggle matSuffix [for]="toDatePicker"></mat-datepicker-toggle>
         <mat-datepicker #toDatePicker startView="year" [startAt]="startDate"></mat-datepicker>
       </mat-form-field>
-      <mat-form-field fxFlex="18">
+      <mat-form-field fxFlex="22">
         <input matInput placeholder="IP" formControlName="ip">
         <mat-icon matSuffix>laptop</mat-icon>
       </mat-form-field>
 
-      <mat-form-field fxFlex="18">
+      <mat-form-field fxFlex="22">
         <mat-select placeholder="الموقع" formControlName="location">
           <mat-option *ngFor="let oneLocation of locations" [value]="oneLocation">
             {{ oneLocation.name }}
@@ -97,22 +97,24 @@
 
       <!--<button mat-button (click)="addForm()">بحث</button>
       <button mat-button (click)="addForm()">استخراج</button>-->
-      <div fxFlex="18">
+      <div fxFlex="22">
         <button mat-raised-button color="primary" (click)="getData(startPicker,endPicker)">بحث</button>
       </div>
-      <mat-form-field fxFlex="18">
+      <!--<mat-form-field fxFlex="22">
         <input matInput [matTimepicker]="startPicker" [disabled]="form.value['from']==''" placeholder="ساعة البداية">
         <mat-timepicker-toggle matSuffix [for]="startPicker"></mat-timepicker-toggle>
         <mat-timepicker #startPicker color="primary"></mat-timepicker>
-      </mat-form-field>
-      <mat-form-field fxFlex="18">
-        <input matInput [matTimepicker]="endPicker" [disabled]="form.value['to']==''" placeholder="ساعة النهاية">
+      </mat-form-field>-->
+      <mat-form-field fxFlex="22">
+        <input matInput [matTimepicker]="endPicker" [disabled]="form.value['to']==''" placeholder="المتصلون قبل وقت">
         <mat-timepicker-toggle matSuffix [for]="endPicker"></mat-timepicker-toggle>
         <mat-timepicker #endPicker color="primary"></mat-timepicker>
       </mat-form-field>
-      <div fxFlex="18">
+      <!--<div fxFlex="22">
+      </div>-->
+      <div fxFlex="22">
       </div>
-      <div fxFlex="18">
+      <div fxFlex="22">
         <button mat-raised-button color="accent" (click)="export()">استخراج</button>
       </div>
     </div>
