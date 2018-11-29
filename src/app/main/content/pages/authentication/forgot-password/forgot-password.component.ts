@@ -5,13 +5,12 @@ import { FuseConfigService } from '../../../../../core/services/config.service';
 import { fuseAnimations } from '../../../../../core/animations';
 
 @Component({
-    selector   : 'fuse-forgot-password',
+    selector: 'fuse-forgot-password',
     templateUrl: './forgot-password.component.html',
-    styleUrls  : ['./forgot-password.component.scss'],
-    animations : fuseAnimations
+    styleUrls: ['./forgot-password.component.scss'],
+    animations: fuseAnimations
 })
-export class FuseForgotPasswordComponent implements OnInit
-{
+export class FuseForgotPasswordComponent implements OnInit {
     forgotPasswordForm: FormGroup;
     forgotPasswordFormErrors: any;
 
@@ -19,13 +18,12 @@ export class FuseForgotPasswordComponent implements OnInit
         private fuseConfig: FuseConfigService,
         private formBuilder: FormBuilder,
         private mainServ: MainService
-    )
-    {
+    ) {
         this.fuseConfig.setSettings({
             layout: {
                 navigation: 'none',
-                toolbar   : 'none',
-                footer    : 'none'
+                toolbar: 'none',
+                footer: 'none'
             }
         });
 
@@ -34,8 +32,7 @@ export class FuseForgotPasswordComponent implements OnInit
         };
     }
 
-    ngOnInit()
-    {
+    ngOnInit() {
         this.forgotPasswordForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.email]]
         });
@@ -45,12 +42,9 @@ export class FuseForgotPasswordComponent implements OnInit
         });
     }
 
-    onForgotPasswordFormValuesChanged()
-    {
-        for ( const field in this.forgotPasswordFormErrors )
-        {
-            if ( !this.forgotPasswordFormErrors.hasOwnProperty(field) )
-            {
+    onForgotPasswordFormValuesChanged() {
+        for (const field in this.forgotPasswordFormErrors) {
+            if (!this.forgotPasswordFormErrors.hasOwnProperty(field)) {
                 continue;
             }
 
@@ -60,23 +54,20 @@ export class FuseForgotPasswordComponent implements OnInit
             // Get the control
             const control = this.forgotPasswordFormErrors.get(field);
 
-            if ( control && control.dirty && !control.valid )
-            {
+            if (control && control.dirty && !control.valid) {
                 this.forgotPasswordFormErrors[field] = control.errors;
             }
         }
     }
-
-    sendEmail(){
-         this.mainServ.APIServ.post("partners/reset",this.forgotPasswordForm.value).subscribe((data: any) => {
+    message = " ";
+    sendEmail() {
+        this.mainServ.APIServ.post("ISP/reset", this.forgotPasswordForm.value).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
-                
-            }
-            else if (this.mainServ.APIServ.getErrorCode() == 400) {
-                
+                this.message = ". الرجاء الإطلاع على بريدك الالكتروني "
             }
             else {
-                this.mainServ.globalServ.somthingError();
+                this.message = ". الرجاء المحاولة مرة أخرى "
+                this.mainServ.APIServ.setErrorCode(0);
             }
 
         });

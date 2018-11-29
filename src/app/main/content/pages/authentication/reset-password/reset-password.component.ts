@@ -31,7 +31,7 @@ export class FuseResetPasswordComponent implements OnInit {
         });
 
         this.resetPasswordFormErrors = {
-            password: {},
+            newPassword: {},
             passwordConfirm: {}
         };
 
@@ -44,7 +44,7 @@ export class FuseResetPasswordComponent implements OnInit {
 
     ngOnInit() {
         this.resetPasswordForm = this.formBuilder.group({
-            password: ['', Validators.required],
+            newPassword: ['', Validators.required],
             passwordConfirm: ['', Validators.required]
         });
 
@@ -72,9 +72,9 @@ export class FuseResetPasswordComponent implements OnInit {
     }
 
     resetPassword() {
-        this.mainServ.APIServ.resetPassWord("partners/reset-password", this.resetPasswordForm.value,this.token).subscribe((data: any) => {
+        this.mainServ.APIServ.resetPassWord("isp/reset-password", this.resetPasswordForm.value,this.token).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
-
+                this.mainServ.globalServ.goTo("login")
             }
             else if (this.mainServ.APIServ.getErrorCode() == 400) {
 
