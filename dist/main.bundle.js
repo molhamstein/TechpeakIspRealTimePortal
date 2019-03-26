@@ -5445,6 +5445,39 @@ var FuseofflineComponent = (function () {
         var _this = this;
         if (startTime === void 0) { startTime = null; }
         if (endTime === void 0) { endTime = null; }
+        var startHoure = 0;
+        var startMin = 0;
+        var endHoure = 23;
+        var endMin = 59;
+        if (this.form.value['from'] != '') {
+            console.log("startTime");
+            console.log(startTime);
+            if (startTime != null && startTime['userTime'] != null) {
+                this.startTime = startTime['userTime'];
+            }
+            if (this.startTime != null) {
+                startHoure = this.startTime['hour'];
+                if (this.startTime['meriden'] == 'PM')
+                    startHoure += 12;
+                startMin = this.startTime['minute'];
+            }
+            this.form.value['from'].setHours(startHoure);
+            this.form.value['from'].setMinutes(startMin);
+        }
+        if (this.form.value['to'] != '') {
+            if (endTime != null && endTime['userTime'] != null) {
+                this.endTime = endTime['userTime'];
+            }
+            if (this.endTime != null) {
+                endHoure = this.endTime['hour'];
+                if (this.endTime['meriden'] == 'PM')
+                    endHoure += 12;
+                endMin = this.endTime['minute'];
+            }
+            this.form.value['to'].setHours(endHoure);
+            this.form.value['to'].setMinutes(endMin);
+        }
+        console.log(this.form.value);
         this.mainServ.APIServ.get("clients/countOfflineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName + "&from=" + this.form.value['from'] + "&to=" + this.form.value['to'] + "&ip=" + this.form.value['ip']).subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
                 console.log(data['count']);
@@ -5499,7 +5532,7 @@ var FuseofflineComponent = (function () {
                 endMin = this.endTime['minute'];
             }
             this.form.value['to'].setHours(endHoure);
-            this.form.value['to'].setMinutes(endHoure);
+            this.form.value['to'].setMinutes(endMin);
         }
         this.mainServ.APIServ.get("clients/onlineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName + "&from=" + this.form.value['from'] + "&to=" + this.form.value['to'] + "&ip=" + this.form.value['ip'] + "&isExport=3&skip=" + limit * offset).subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
