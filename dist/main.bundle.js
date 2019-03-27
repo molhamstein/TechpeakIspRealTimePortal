@@ -5281,6 +5281,7 @@ var FusehomeComponent = (function () {
         //     this.form.value['from'].setHours(startHoure);
         //     this.form.value['from'].setMinutes(startMin);
         // }
+        var tempForm = Object.assign({}, this.form.value);
         if (this.form.value['to'] != '') {
             if (endTime != null && endTime['userTime'] != null) {
                 this.endTime = endTime['userTime'];
@@ -5293,8 +5294,9 @@ var FusehomeComponent = (function () {
             }
             this.form.value['to'].setHours(endHoure);
             this.form.value['to'].setMinutes(endHoure);
+            tempForm['to'] = new Date(this.form.value['to']).toUTCString();
         }
-        this.mainServ.APIServ.get("clients/onlineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName + "&to=" + this.form.value['to'] + "&ip=" + this.form.value['ip']).subscribe(function (data) {
+        this.mainServ.APIServ.get("clients/onlineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName + "&to=" + tempForm['to'] + "&ip=" + this.form.value['ip']).subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
                 _this.rows = data;
             }
@@ -5449,6 +5451,7 @@ var FuseofflineComponent = (function () {
         var startMin = 0;
         var endHoure = 23;
         var endMin = 59;
+        var tempForm = Object.assign({}, this.form.value);
         if (this.form.value['from'] != '') {
             console.log("startTime");
             console.log(startTime);
@@ -5463,6 +5466,7 @@ var FuseofflineComponent = (function () {
             }
             this.form.value['from'].setHours(startHoure);
             this.form.value['from'].setMinutes(startMin);
+            tempForm['from'] = new Date(this.form.value['from']).toUTCString();
         }
         if (this.form.value['to'] != '') {
             if (endTime != null && endTime['userTime'] != null) {
@@ -5476,9 +5480,10 @@ var FuseofflineComponent = (function () {
             }
             this.form.value['to'].setHours(endHoure);
             this.form.value['to'].setMinutes(endMin);
+            tempForm['to'] = new Date(this.form.value['to']).toUTCString();
         }
         console.log(this.form.value);
-        this.mainServ.APIServ.get("clients/countOfflineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName + "&from=" + this.form.value['from'] + "&to=" + this.form.value['to'] + "&ip=" + this.form.value['ip']).subscribe(function (data) {
+        this.mainServ.APIServ.get("clients/countOfflineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName + "&from=" + tempForm['from'] + "&to=" + tempForm['to'] + "&ip=" + this.form.value['ip']).subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
                 console.log(data['count']);
                 _this.count = data['count'];
@@ -5506,9 +5511,8 @@ var FuseofflineComponent = (function () {
         var startMin = 0;
         var endHoure = 23;
         var endMin = 59;
+        var tempForm = Object.assign({}, this.form.value);
         if (this.form.value['from'] != '') {
-            console.log("startTime");
-            console.log(startTime);
             if (startTime != null && startTime['userTime'] != null) {
                 this.startTime = startTime['userTime'];
             }
@@ -5520,6 +5524,7 @@ var FuseofflineComponent = (function () {
             }
             this.form.value['from'].setHours(startHoure);
             this.form.value['from'].setMinutes(startMin);
+            tempForm['from'] = new Date(this.form.value['from']).toUTCString();
         }
         if (this.form.value['to'] != '') {
             if (endTime != null && endTime['userTime'] != null) {
@@ -5533,8 +5538,9 @@ var FuseofflineComponent = (function () {
             }
             this.form.value['to'].setHours(endHoure);
             this.form.value['to'].setMinutes(endMin);
+            tempForm['to'] = new Date(this.form.value['to']).toUTCString();
         }
-        this.mainServ.APIServ.get("clients/onlineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName + "&from=" + this.form.value['from'] + "&to=" + this.form.value['to'] + "&ip=" + this.form.value['ip'] + "&isExport=3&skip=" + limit * offset).subscribe(function (data) {
+        this.mainServ.APIServ.get("clients/onlineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName + "&from=" + tempForm['from'] + "&to=" + tempForm['to'] + "&ip=" + this.form.value['ip'] + "&isExport=3&skip=" + limit * offset).subscribe(function (data) {
             if (_this.mainServ.APIServ.getErrorCode() == 0) {
                 _this.loadingIndicator = true;
                 _this.rows = data;

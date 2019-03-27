@@ -144,6 +144,8 @@ export class FusehomeComponent {
 
         // }
 
+        var tempForm=Object.assign({},this.form.value)
+
         if (this.form.value['to'] != '') {
 
             if (endTime != null && endTime['userTime'] != null) {
@@ -160,8 +162,9 @@ export class FusehomeComponent {
 
             this.form.value['to'].setHours(endHoure);
             this.form.value['to'].setMinutes(endHoure);
+            tempForm['to']=new Date(this.form.value['to']).toUTCString()
         }
-        this.mainServ.APIServ.get("clients/onlineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName +  "&to=" + this.form.value['to'] + "&ip=" + this.form.value['ip']).subscribe((data: any) => {
+        this.mainServ.APIServ.get("clients/onlineUsersIsp?mobile=" + this.form.value['mobile'] + "&location=" + this.form.value['location'].routerName +  "&to=" + tempForm['to'] + "&ip=" + this.form.value['ip']).subscribe((data: any) => {
             if (this.mainServ.APIServ.getErrorCode() == 0) {
                 this.rows = data;
             }
