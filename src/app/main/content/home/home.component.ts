@@ -82,18 +82,18 @@ export class FusehomeComponent {
         });
 
         let mainThis = this
-        this.socket.on('connect', function () {
-            mainThis.socket.emit('authentication', { id: mainThis.mainServ.loginServ.getToken(), userId: mainThis.mainServ.loginServ.getUserId() });
-            mainThis.socket.on('authenticated', function () {
-                console.log('User is authenticated');
-                mainThis.socket.on('/Isp/POST', function () {
-                    alert("Teeeeeeeeeeeest");
+        // this.socket.on('connect', function () {
+        //     mainThis.socket.emit('authentication', { id: mainThis.mainServ.loginServ.getToken(), userId: mainThis.mainServ.loginServ.getUserId() });
+        //     mainThis.socket.on('authenticated', function () {
+        //         console.log('User is authenticated');
+        //         mainThis.socket.on('/Isp/POST', function () {
+        //             alert("Teeeeeeeeeeeest");
 
 
-                });
+        //         });
 
-            });
-        });
+        //     });
+        // });
 
         this.loadingIndicator = false;
 
